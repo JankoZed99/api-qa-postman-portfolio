@@ -1,0 +1,6 @@
+.venv/
+.qa-venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+reports/newman-run.json

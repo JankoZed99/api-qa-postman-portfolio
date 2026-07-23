@@ -1,0 +1,13 @@
+ID,Area,Method,Endpoint,Scenario,Expected result,Test type,Status
+TF-001,System,GET,/health,Service health check,200 with status and version,Smoke,Pass
+TF-002,Authentication,POST,/auth/login,Valid credentials,200 with bearer token,Positive,Pass
+TF-003,Authentication,POST,/auth/login,Invalid password,401 with explicit error,Negative,Pass
+TF-004,Authentication,POST,/auth/login,Missing password,422 with validation detail,Negative,Pass
+TF-005,Authorization,GET,/users,Missing bearer token,401 with token error,Negative,Pass
+TF-006,Users,GET,/users?page=1&page_size=2,Valid pagination,200 with two users and metadata,Positive,Pass
+TF-007,Users,GET,/users?page=0,Invalid lower boundary,422 with boundary error,Boundary,Pass
+TF-008,Users,GET,/users/1,Existing user,200 with expected user contract,Positive,Pass
+TF-009,Users,GET,/users/999,Unknown user,404 with explicit error,Negative,Pass
+TF-010,Tasks,POST,/tasks,Valid task,201 with preserved values,Positive,Pass
+TF-011,Tasks,POST,/tasks,Title below minimum length,422 with validation detail,Boundary,Pass
+TF-012,Tasks,DELETE,/tasks/101,Delete existing task,204 with empty body,Workflow,Pass

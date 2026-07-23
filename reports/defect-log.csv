@@ -1,0 +1,5 @@
+ID,Severity,Area,Summary,Previous behavior,Expected behavior,Resolution,Verification
+QA-001,High,Authentication,Missing password caused server error,POST /auth/login returned 500,Return a client validation error,Fixed in demo v1.0,Retested: 422 Pass
+QA-002,Medium,Users,Page zero was accepted,GET /users?page=0 returned 200,Reject invalid pagination boundary,Fixed in demo v1.0,Retested: 422 Pass
+QA-003,Medium,Users,Unknown user returned null,GET /users/999 returned 200 with null,Return explicit not-found response,Fixed in demo v1.0,Retested: 404 Pass
+QA-004,Low,Tasks,Created task used wrong status,POST /tasks returned 200,Return 201 Created,Fixed in demo v1.0,Retested: 201 Pass

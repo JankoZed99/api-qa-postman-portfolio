@@ -1,0 +1,21 @@
+name: API QA
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: pip install -r requirements.txt
+      - run: pytest -q
+      - run: uvicorn app.main:app --host 127.0.0.1 --port 8000 &
+      - run: npx --yes newman run postman/TaskFlow_API_QA.postman_collection.json -e postman/TaskFlow_Local.postman_environment.json
