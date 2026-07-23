@@ -16,6 +16,7 @@ jobs:
         with:
           node-version: "20"
       - run: pip install -r requirements.txt
-      - run: pytest -q
+      - run: python -m pytest -q
       - run: uvicorn app.main:app --host 127.0.0.1 --port 8000 &
       - run: npx --yes newman run postman/TaskFlow_API_QA.postman_collection.json -e postman/TaskFlow_Local.postman_environment.json
+
