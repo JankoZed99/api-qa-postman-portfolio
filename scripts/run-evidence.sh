@@ -12,7 +12,7 @@ for _ in {1..20}; do
   sleep 0.25
 done
 
-pytest -q
+python -m pytest -q
 npx newman run postman/TaskFlow_API_QA.postman_collection.json \
   -e postman/TaskFlow_Local.postman_environment.json \
   -r cli,json \
