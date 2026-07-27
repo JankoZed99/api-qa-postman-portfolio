@@ -39,7 +39,7 @@ Open the API documentation at `http://127.0.0.1:8000/docs`.
 ## Run Python regression tests
 
 ```bash
-pytest -q
+python -m pytest -q
 ```
 
 ## Run the Postman suite with Newman
