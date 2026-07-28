@@ -11,3 +11,4 @@ TF-009,Users,GET,/users/999,Unknown user,404 with explicit error,Negative,Pass
 TF-010,Tasks,POST,/tasks,Valid task,201 with preserved values,Positive,Pass
 TF-011,Tasks,POST,/tasks,Title below minimum length,422 with validation detail,Boundary,Pass
 TF-012,Tasks,DELETE,/tasks/101,Delete existing task,204 with empty body,Workflow,Pass
+TF-013,Tasks,POST,/tasks,Invalid priority value,422 with priority enum validation detail,Negative,Pass
