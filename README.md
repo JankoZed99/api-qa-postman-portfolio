@@ -69,10 +69,11 @@ chmod +x scripts/run-evidence.sh
 
 ## Verified demonstration result
 
-- Newman: 12 requests, 41 assertions, 0 failures
+- Newman: 13 requests, 44 assertions, 0 failures
 - pytest: 11 tests passed
-- Newman average response time in the recorded local run: 8.8 ms
+- Newman average response time in the recorded local run: 9 ms
 
 ## Skills demonstrated
 
 Postman, REST API testing, HTTP status codes, JSON contract validation, negative testing, bearer authentication, boundary analysis, Newman, pytest, FastAPI, Docker, and release-readiness reporting.
+
