@@ -1,35 +1,18 @@
 {
   "info": {
-    "_postman_id": "3dfdd859-0c23-4686-9be8-b798a111d18d",
+    "_postman_id": "949833f5-df33-4480-894f-55658c22cfce",
     "name": "TaskFlow API QA - Portfolio Demo",
     "description": "Synthetic API QA engagement covering health, authentication, authorization, validation, pagination, CRUD workflows, and negative cases. Portfolio demonstration only; no real client data.",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54884174",
+    "_collection_link": "https://go.postman.co/collection/54884174-949833f5-df33-4480-894f-55658c22cfce?source=collection_link"
   },
-  "event": [
-    {
-      "listen": "test",
-      "script": {
-        "type": "text/javascript",
-        "exec": [
-          "pm.test('Response time is below 1000 ms', function () {",
-          "    pm.expect(pm.response.responseTime).to.be.below(1000);",
-          "});"
-        ]
-      }
-    }
-  ],
   "item": [
     {
       "name": "01 - System",
       "item": [
         {
           "name": "Health check",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {"raw": "{{base_url}}/health", "host": ["{{base_url}}"], "path": ["health"]},
-            "description": "Confirms API availability and advertised version."
-          },
           "event": [
             {
               "listen": "test",
@@ -46,7 +29,22 @@
                 ]
               }
             }
-          ]
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/health",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "health"
+              ]
+            },
+            "description": "Confirms API availability and advertised version."
+          },
+          "response": []
         }
       ]
     },
@@ -55,12 +53,6 @@
       "item": [
         {
           "name": "Valid login",
-          "request": {
-            "method": "POST",
-            "header": [{"key": "Content-Type", "value": "application/json"}],
-            "body": {"mode": "raw", "raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\"\n}", "options": {"raw": {"language": "json"}}},
-            "url": {"raw": "{{base_url}}/auth/login", "host": ["{{base_url}}"], "path": ["auth", "login"]}
-          },
           "event": [
             {
               "listen": "test",
@@ -77,16 +69,39 @@
                 ]
               }
             }
-          ]
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
         },
         {
           "name": "Invalid password",
-          "request": {
-            "method": "POST",
-            "header": [{"key": "Content-Type", "value": "application/json"}],
-            "body": {"mode": "raw", "raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"wrong-password\"\n}", "options": {"raw": {"language": "json"}}},
-            "url": {"raw": "{{base_url}}/auth/login", "host": ["{{base_url}}"], "path": ["auth", "login"]}
-          },
           "event": [
             {
               "listen": "test",
@@ -98,16 +113,39 @@
                 ]
               }
             }
-          ]
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"wrong-password\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
         },
         {
           "name": "Missing password field",
-          "request": {
-            "method": "POST",
-            "header": [{"key": "Content-Type", "value": "application/json"}],
-            "body": {"mode": "raw", "raw": "{\n  \"email\": \"{{email}}\"\n}", "options": {"raw": {"language": "json"}}},
-            "url": {"raw": "{{base_url}}/auth/login", "host": ["{{base_url}}"], "path": ["auth", "login"]}
-          },
           "event": [
             {
               "listen": "test",
@@ -119,7 +157,36 @@
                 ]
               }
             }
-          ]
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{email}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
@@ -128,11 +195,6 @@
       "item": [
         {
           "name": "List users without token",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {"raw": "{{base_url}}/users", "host": ["{{base_url}}"], "path": ["users"]}
-          },
           "event": [
             {
               "listen": "test",
@@ -144,20 +206,24 @@
                 ]
               }
             }
-          ]
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/users",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": []
         },
         {
           "name": "List users with pagination",
-          "request": {
-            "method": "GET",
-            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}", "type": "text"}],
-            "url": {
-              "raw": "{{base_url}}/users?page=1&page_size=2",
-              "host": ["{{base_url}}"],
-              "path": ["users"],
-              "query": [{"key": "page", "value": "1"}, {"key": "page_size", "value": "2"}]
-            }
-          },
           "event": [
             {
               "listen": "test",
@@ -176,15 +242,40 @@
                 ]
               }
             }
-          ]
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/users?page=1&page_size=2",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "page_size",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          "response": []
         },
         {
           "name": "Reject page zero",
-          "request": {
-            "method": "GET",
-            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}", "type": "text"}],
-            "url": {"raw": "{{base_url}}/users?page=0", "host": ["{{base_url}}"], "path": ["users"], "query": [{"key": "page", "value": "0"}]}
-          },
           "event": [
             {
               "listen": "test",
@@ -196,15 +287,36 @@
                 ]
               }
             }
-          ]
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/users?page=0",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                }
+              ]
+            }
+          },
+          "response": []
         },
         {
           "name": "Get existing user",
-          "request": {
-            "method": "GET",
-            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}", "type": "text"}],
-            "url": {"raw": "{{base_url}}/users/1", "host": ["{{base_url}}"], "path": ["users", "1"]}
-          },
           "event": [
             {
               "listen": "test",
@@ -218,15 +330,31 @@
                 ]
               }
             }
-          ]
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/users/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "1"
+              ]
+            }
+          },
+          "response": []
         },
         {
           "name": "Unknown user",
-          "request": {
-            "method": "GET",
-            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}", "type": "text"}],
-            "url": {"raw": "{{base_url}}/users/999", "host": ["{{base_url}}"], "path": ["users", "999"]}
-          },
           "event": [
             {
               "listen": "test",
@@ -238,7 +366,28 @@
                 ]
               }
             }
-          ]
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/users/999",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "999"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
@@ -247,15 +396,6 @@
       "item": [
         {
           "name": "Create task",
-          "request": {
-            "method": "POST",
-            "header": [
-              {"key": "Authorization", "value": "Bearer {{access_token}}", "type": "text"},
-              {"key": "Content-Type", "value": "application/json", "type": "text"}
-            ],
-            "body": {"mode": "raw", "raw": "{\n  \"title\": \"Verify release candidate\",\n  \"priority\": \"high\"\n}", "options": {"raw": {"language": "json"}}},
-            "url": {"raw": "{{base_url}}/tasks", "host": ["{{base_url}}"], "path": ["tasks"]}
-          },
           "event": [
             {
               "listen": "test",
@@ -274,19 +414,103 @@
                 ]
               }
             }
-          ]
-        },
-        {
-          "name": "Reject short task title",
+          ],
           "request": {
             "method": "POST",
             "header": [
-              {"key": "Authorization", "value": "Bearer {{access_token}}", "type": "text"},
-              {"key": "Content-Type", "value": "application/json", "type": "text"}
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
             ],
-            "body": {"mode": "raw", "raw": "{\n  \"title\": \"x\",\n  \"priority\": \"low\"\n}", "options": {"raw": {"language": "json"}}},
-            "url": {"raw": "{{base_url}}/tasks", "host": ["{{base_url}}"], "path": ["tasks"]}
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Verify release candidate\",\n  \"priority\": \"high\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/tasks",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "tasks"
+              ]
+            }
           },
+          "response": []
+        },
+        {
+          "name": "Reject invalid task priority",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 422', () => {",
+                  "    pm.response.to.have.status(422);",
+                  "});",
+                  "",
+                  "const body = pm.response.json();",
+                  "",
+                  "pm.test('Priority validation error is returned', () => {",
+                  "    pm.expect(body.detail).to.be.an('array').that.is.not.empty;",
+                  "    pm.expect(JSON.stringify(body.detail)).to.include('priority');",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Review API report\",\n  \"priority\": \"urgent\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/tasks",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "tasks"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reject short task title",
           "event": [
             {
               "listen": "test",
@@ -298,15 +522,44 @@
                 ]
               }
             }
-          ]
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"x\",\n  \"priority\": \"low\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/tasks",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "tasks"
+              ]
+            }
+          },
+          "response": []
         },
         {
           "name": "Delete task",
-          "request": {
-            "method": "DELETE",
-            "header": [{"key": "Authorization", "value": "Bearer {{access_token}}", "type": "text"}],
-            "url": {"raw": "{{base_url}}/tasks/{{task_id}}", "host": ["{{base_url}}"], "path": ["tasks", "{{task_id}}"]}
-          },
           "event": [
             {
               "listen": "test",
@@ -318,9 +571,51 @@
                 ]
               }
             }
-          ]
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/tasks/{{task_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "tasks",
+                "{{task_id}}"
+              ]
+            }
+          },
+          "response": []
         }
       ]
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "pm.test('Response time is below 1000 ms', function () {",
+          "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+          "});"
+        ]
+      }
     }
   ]
 }
