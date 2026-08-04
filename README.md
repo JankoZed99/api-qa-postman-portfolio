@@ -71,7 +71,6 @@ chmod +x scripts/run-evidence.sh
 
 - Newman: 13 requests, 44 assertions, 0 failures
 - pytest: 11 tests passed
-- Newman average response time in the recorded local run: 9 ms
 
 ## Skills demonstrated
 
