@@ -1,5 +1,5 @@
 from __future__ import annotations
-
+from datetime import date
 import csv
 import json
 from pathlib import Path
@@ -23,7 +23,7 @@ from reportlab.platypus import (
 ROOT = Path(__file__).resolve().parent
 REPORTS = ROOT / "reports"
 OUTPUT = REPORTS / "API_QA_Portfolio_Report.pdf"
-
+GENERATED_DATE = f"{date.today().day} {date.today():%B %Y}"
 NAVY = colors.HexColor("#14213D")
 BLUE = colors.HexColor("#1D4ED8")
 BLUE_LIGHT = colors.HexColor("#EAF1FF")
@@ -166,7 +166,7 @@ def page_chrome(canvas, doc):
     canvas.line(16 * mm, 12 * mm, width - 16 * mm, 12 * mm)
     canvas.setFont("Helvetica", 7)
     canvas.setFillColor(MUTED)
-    canvas.drawString(16 * mm, 7.5 * mm, "Synthetic portfolio demonstration · Generated 20 July 2026")
+    canvas.drawString(16 * mm, 7.5 * mm, f"Synthetic portfolio demonstration · Generated {GENERATED_DATE}")
     canvas.drawRightString(width - 16 * mm, 7.5 * mm, f"Page {doc.page}")
     canvas.restoreState()
 
@@ -250,7 +250,7 @@ summary_left = [
 summary_right = [
     P("<b>Release recommendation</b>", "BodySmall"),
     P("<font color='#15803D'><b>PASS — suitable for demonstration release.</b></font>", "BodySmall"),
-    P("All 41 Newman assertions and 11 pytest regression checks passed. No open seeded defects remain in this version.", "BodySmall"),
+    P(f"All {assertions_total} Newman assertions and 11 pytest regression checks passed. No open seeded defects remain in this version.", "BodySmall"),
 ]
 summary = Table([[summary_left, summary_right]], colWidths=[130 * mm, 130 * mm])
 summary.setStyle(
